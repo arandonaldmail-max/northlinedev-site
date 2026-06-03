@@ -4,342 +4,200 @@ import Button from './Button.astro';
 const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northlinedev.com/?ismsaljsauthenabled";
 ---
 
-<section class="hero">
-	<div class="container hero-grid">
-		<div class="hero-content reveal">
-			<div class="badge-eyebrow">
-				<span>Roofing Growth Partner</span>
+<section class="hero-monolith">
+	<div class="container hero-wrap">
+		<div class="hero-main">
+			<div class="hero-mission reveal">
+				<span class="mono text-tactical">Mission Directive // 01</span>
 			</div>
-			<h1 class="hero-title">
-				Stop Losing Roofing <br class="desktop-only"/>Leads Before They <br class="desktop-only"/>Become Jobs.
+			
+			<h1 class="hero-h1 reveal" style="animation-delay: 0.1s;">
+				Engineered <br/>Market <br/><span class="text-glow">Dominance.</span>
 			</h1>
-			<p class="hero-lead">
-				We help roofing companies capture, manage, and convert more opportunities with premium websites, automated follow-up, and one connected growth system.
+
+			<p class="hero-p reveal" style="animation-delay: 0.2s;">
+				Northline is the industrial-grade growth infrastructure for the world's most ambitious roofing enterprises. We deploy proprietary digital systems that turn market volatility into clinical precision.
 			</p>
 
-			<div class="hero-actions">
-				<Button href={bookingLink} variant="primary" size="lg">
-					Get Free Website Audit
-				</Button>
-				<Button href="#demo" variant="outline" size="lg">
-					See Website Demo
-				</Button>
-			</div>
-
-			<div class="hero-trust">
-				<div class="trust-item">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-					<span>Built only for roofers</span>
-				</div>
-				<div class="trust-item">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-					<span>€997 website setup</span>
+			<div class="hero-cta reveal" style="animation-delay: 0.3s;">
+				<Button href={bookingLink} variant="tactical">Request Deployment</Button>
+				<div class="cta-meta">
+					<span class="mono">Next Available Slot: Q3 2026</span>
+					<span class="mono">Status: Selective Engagement</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="hero-visual reveal" style="animation-delay: 0.2s;">
-			<div class="premium-frame">
-				<div class="frame-head">
-					<div class="frame-title">
-						<small>Growth System</small>
-						<strong>Lead Command Center</strong>
-					</div>
-					<div class="live-pill">
-						<span class="pulse"></span>
-						Live Monitoring
-					</div>
+		<div class="hero-visual reveal" style="animation-delay: 0.4s;">
+			<div class="monolith-core">
+				<div class="monolith-body">
+					<div class="monolith-layer layer-1"></div>
+					<div class="monolith-layer layer-2"></div>
+					<div class="monolith-layer layer-3"></div>
+					<div class="monolith-glow"></div>
 				</div>
-
-				<div class="frame-stats">
-					<div class="stat-card">
-						<span class="stat-label">Leads</span>
-						<span class="stat-value">24</span>
-					</div>
-					<div class="stat-card">
-						<span class="stat-label">Estimates</span>
-						<span class="stat-value">11</span>
-					</div>
-					<div class="stat-card highlight">
-						<span class="stat-label">ROI</span>
-						<span class="stat-value">+312%</span>
-					</div>
-				</div>
-
-				<div class="frame-pipeline">
-					<div class="step">
-						<div class="step-blob"></div>
-						<div class="step-text">
-							<strong>Website Visit</strong>
-							<span>High-trust impression</span>
-						</div>
-					</div>
-					<div class="step">
-						<div class="step-blob"></div>
-						<div class="step-text">
-							<strong>Lead Sync</strong>
-							<span>Instant CRM capture</span>
-						</div>
-					</div>
-					<div class="step">
-						<div class="step-blob"></div>
-						<div class="step-text">
-							<strong>Follow-Up</strong>
-							<span>Automated SMS sent</span>
-						</div>
+				<div class="monolith-data">
+					<div class="data-stream">
+						<span class="mono">Vertical_Integrity_Active</span>
+						<span class="mono">Grid_Latency: 0.04ms</span>
+						<span class="mono">Core_Temp: Stable</span>
 					</div>
 				</div>
 			</div>
 			
-			<!-- Background Glow -->
-			<div class="glow-orb"></div>
+			<div class="blueprint-lines">
+				<svg width="100%" height="100%" viewBox="0 0 400 400" fill="none">
+					<path d="M0 200H400M200 0V400" stroke="var(--line-heavy)" stroke-width="1"/>
+					<circle cx="200" cy="200" r="100" stroke="var(--line)" stroke-width="1"/>
+					<circle cx="200" cy="200" r="180" stroke="var(--line)" stroke-width="1" stroke-dasharray="8 8"/>
+				</svg>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.hero {
-		min-height: calc(100vh - 72px);
+	.hero-monolith {
+		min-height: 100vh;
+		padding-top: 80px;
 		display: flex;
 		align-items: center;
-		padding: var(--s-64) 0;
 		position: relative;
 		overflow: hidden;
 	}
 
-	.hero-grid {
+	.hero-wrap {
 		display: grid;
-		grid-template-columns: 1.1fr 0.9fr;
-		gap: var(--s-80);
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: var(--s-128);
 		align-items: center;
 	}
 
-	.badge-eyebrow {
+	.hero-mission {
 		margin-bottom: var(--s-32);
 	}
 
-	.badge-eyebrow span {
-		background: rgba(29, 99, 255, 0.08);
-		color: #93c5fd;
-		padding: 8px 16px;
-		border-radius: 99px;
-		font-size: 0.75rem;
-		font-weight: 800;
-		text-transform: uppercase;
-		letter-spacing: 0.15em;
-		border: 1px solid rgba(29, 99, 255, 0.15);
-	}
+	.text-tactical { color: var(--tactical-blue); }
 
-	.hero-title {
-		font-size: clamp(3rem, 7vw, 5.5rem);
-		line-height: 1;
-		margin-bottom: var(--s-32);
+	.hero-h1 {
+		font-size: clamp(4rem, 10vw, 7.5rem);
 		color: #fff;
-	}
-
-	.hero-lead {
-		font-size: clamp(1.125rem, 2vw, 1.35rem);
-		color: var(--text-muted-alt);
-		max-width: 600px;
 		margin-bottom: var(--s-48);
-		line-height: 1.5;
 	}
 
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--s-16);
+	.text-glow {
+		color: #fff;
+		text-shadow: 0 0 40px var(--tactical-blue);
+	}
+
+	.hero-p {
+		font-size: 1.25rem;
+		max-width: 540px;
+		color: var(--steel-dim);
 		margin-bottom: var(--s-64);
+		line-height: 1.4;
 	}
 
-	.hero-trust {
+	.hero-cta {
 		display: flex;
-		flex-wrap: wrap;
-		gap: var(--s-40);
+		flex-direction: column;
+		gap: 24px;
 	}
 
-	.trust-item {
+	.cta-meta {
 		display: flex;
-		align-items: center;
-		gap: 12px;
-		font-size: 0.95rem;
-		font-weight: 600;
-		color: var(--text-muted);
+		flex-direction: column;
+		gap: 8px;
 	}
 
-	/* Premium Frame Visual */
+	.cta-meta span {
+		font-size: 0.65rem;
+		color: var(--line-heavy);
+	}
+
+	/* Monolith Visual */
 	.hero-visual {
 		position: relative;
+		width: 100%;
+		aspect-ratio: 1;
+		display: grid;
+		place-items: center;
 	}
 
-	.premium-frame {
-		background: #0b1120;
-		border: 1px solid var(--line-bright);
-		border-radius: var(--radius-lg);
-		padding: var(--s-40);
-		box-shadow: 
-			0 40px 80px -20px rgba(0,0,0,0.7),
-			inset 0 1px 1px rgba(255,255,255,0.05);
+	.monolith-core {
 		position: relative;
-		z-index: 2;
+		width: 240px;
+		height: 380px;
+		z-index: 5;
 	}
 
-	.frame-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		margin-bottom: var(--s-40);
+	.monolith-body {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		border: 1px solid var(--line-heavy);
+		overflow: hidden;
 	}
 
-	.frame-title small {
-		display: block;
-		color: var(--text-muted);
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		margin-bottom: 4px;
-	}
-
-	.frame-title strong {
-		font-size: 1.25rem;
-		color: #fff;
-		letter-spacing: -0.02em;
-	}
-
-	.live-pill {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		background: rgba(34, 197, 94, 0.1);
-		color: #4ade80;
-		padding: 6px 14px;
-		border-radius: 99px;
-		font-size: 0.7rem;
-		font-weight: 800;
-		text-transform: uppercase;
-	}
-
-	.pulse {
-		width: 8px;
-		height: 8px;
-		background: #4ade80;
-		border-radius: 50%;
-		animation: pulse-ring 2s infinite;
-	}
-
-	@keyframes pulse-ring {
-		0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
-		70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
-		100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-	}
-
-	.frame-stats {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--s-16);
-		margin-bottom: var(--s-40);
-	}
-
-	.stat-card {
-		background: rgba(2, 6, 23, 0.4);
-		border: 1px solid var(--line);
-		padding: var(--s-24) var(--s-16);
-		border-radius: var(--radius-md);
-		text-align: center;
-	}
-
-	.stat-card.highlight {
-		border-color: rgba(59, 130, 246, 0.3);
-		background: rgba(29, 99, 255, 0.04);
-	}
-
-	.stat-label {
-		display: block;
-		font-size: 0.65rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
-		margin-bottom: 8px;
-		letter-spacing: 0.05em;
-	}
-
-	.stat-value {
-		font-size: 1.5rem;
-		font-weight: 900;
-		color: #fff;
-	}
-
-	.frame-pipeline {
-		display: grid;
-		gap: var(--s-12);
-	}
-
-	.step {
-		display: flex;
-		align-items: center;
-		gap: var(--s-24);
-		padding: var(--s-16);
-		background: rgba(255, 255, 255, 0.02);
-		border-radius: var(--radius-md);
-		border: 1px solid var(--line);
-	}
-
-	.step-blob {
-		width: 12px;
-		height: 12px;
-		background: var(--blue-2);
-		border-radius: 4px;
-		box-shadow: 0 0 12px var(--blue-glow);
-	}
-
-	.step-text strong {
-		display: block;
-		font-size: 0.9rem;
-		color: #fff;
-	}
-
-	.step-text span {
-		font-size: 0.8rem;
-		color: var(--text-muted);
-	}
-
-	.glow-orb {
+	.monolith-layer {
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		top: 0; left: 0; width: 100%; height: 100%;
+		background: linear-gradient(to bottom, transparent, rgba(29, 99, 255, 0.1), transparent);
+		animation: scan 4s linear infinite;
+	}
+
+	.layer-2 { animation-delay: 1.3s; }
+	.layer-3 { animation-delay: 2.6s; }
+
+	@keyframes scan {
+		from { transform: translateY(-100%); }
+		to { transform: translateY(100%); }
+	}
+
+	.monolith-glow {
+		position: absolute;
+		top: 50%; left: 50%;
 		transform: translate(-50%, -50%);
-		width: 400px;
-		height: 400px;
-		background: radial-gradient(circle, rgba(29, 99, 255, 0.15) 0%, transparent 70%);
+		width: 150%;
+		height: 150%;
+		background: radial-gradient(circle, var(--tactical-blue-dim) 0%, transparent 70%);
+		z-index: -1;
+	}
+
+	.monolith-data {
+		position: absolute;
+		bottom: -64px; left: 0;
+		width: 100%;
+	}
+
+	.data-stream {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.data-stream span {
+		font-size: 0.6rem;
+		color: var(--tactical-blue);
+		opacity: 0.8;
+	}
+
+	.blueprint-lines {
+		position: absolute;
+		top: 0; left: 0; width: 100%; height: 100%;
 		z-index: 1;
-		pointer-events: none;
 	}
 
 	@media (max-width: 1100px) {
-		.hero-grid {
+		.hero-wrap {
 			grid-template-columns: 1fr;
 			text-align: center;
-			gap: var(--s-80);
+			gap: var(--s-64);
 		}
 
-		.hero-lead, .hero-actions, .hero-trust {
-			margin-inline: auto;
-			justify-content: center;
-		}
-
-		.desktop-only { display: none; }
-	}
-
-	@media (max-width: 768px) {
-		.hero {
-			padding-top: var(--s-32);
-		}
-		
-		.premium-frame {
-			padding: var(--s-24);
-		}
-
-		.frame-stats {
-			grid-template-columns: 1fr;
-		}
+		.hero-p { margin-inline: auto; }
+		.hero-cta { align-items: center; }
+		.monolith-core { width: 180px; height: 300px; }
 	}
 </style>

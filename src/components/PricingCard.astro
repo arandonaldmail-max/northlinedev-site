@@ -12,163 +12,97 @@ interface Props {
 	highlight?: boolean;
 }
 
-const { 
-	title, 
-	price, 
-	period, 
-	description, 
-	features, 
-	ctaLabel, 
-	ctaLink, 
-	highlight = false 
-} = Astro.props;
+const { title, price, period, description, features, ctaLabel, ctaLink, highlight = false } = Astro.props;
 ---
 
-<div class:list={["pricing-card-wrap", { "is-highlighted": highlight }]}>
-	<div class="card-body">
-		<h3 class="tier-name">{title}</h3>
-		
-		<div class="price-unit">
-			<span class="symbol">&euro;</span>
-			<span class="value">{price}</span>
-			{period && <span class="interval">/{period}</span>}
+<div class:list={["tactical-tier", { "highlight": highlight }]}>
+	<div class="tier-inner">
+		<div class="tier-head">
+			<h3 class="mono text-tactical">{title}</h3>
+			<div class="price-wrap">
+				<span class="currency">&euro;</span>
+				<span class="amount">{price}</span>
+				{period && <span class="mono period">/{period}</span>}
+			</div>
+			<p class="desc">{description}</p>
 		</div>
 
-		<p class="tier-desc">{description}</p>
-		
-		<div class="divider"></div>
+		<div class="tier-body">
+			<ul class="feat-list">
+				{features.map(f => (
+					<li>
+						<div class="feat-dot"></div>
+						<span>{f}</span>
+					</li>
+				))}
+			</ul>
+		</div>
 
-		<ul class="feature-stack">
-			{features.map(feature => (
-				<li>
-					<div class="check-circle">
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-							<polyline points="20 6 9 17 4 12"></polyline>
-						</svg>
-					</div>
-					<span>{feature}</span>
-				</li>
-			))}
-		</ul>
+		<div class="tier-foot">
+			<Button href={ctaLink} variant={highlight ? 'tactical' : 'ghost'} className="w-full">
+				{ctaLabel}
+			</Button>
+		</div>
 	</div>
-
-	<Button href={ctaLink} variant={highlight ? 'primary' : 'outline'} className="w-full">
-		{ctaLabel}
-	</Button>
+	
+	<div class="tier-frame"></div>
 </div>
 
 <style>
-	.pricing-card-wrap {
-		background: #0b1120;
-		border: 1px solid var(--line);
-		border-radius: var(--radius-lg);
-		padding: var(--s-64) var(--s-48);
+	.tactical-tier {
+		position: relative;
+		background: var(--bg-alt);
+		border: 1px solid var(--line-heavy);
+		padding: var(--s-64) var(--s-40);
+		height: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		position: relative;
-		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-		height: 100%;
 	}
 
-	.pricing-card-wrap.is-highlighted {
-		background: #0f172a;
-		border-color: rgba(59, 130, 246, 0.3);
+	.tactical-tier.highlight {
+		border-color: var(--tactical-blue);
+		background: rgba(29, 99, 255, 0.02);
 		box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
 	}
 
-	.pricing-card-wrap:hover {
-		transform: translateY(-8px);
-		border-color: var(--line-bright);
-	}
+	.text-tactical { color: var(--tactical-blue); font-size: 0.75rem; margin-bottom: 24px; display: block; }
 
-	.tier-name {
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 0.2em;
-		color: var(--blue-2);
-		margin-bottom: var(--s-32);
-		font-weight: 800;
-	}
-
-	.price-unit {
+	.price-wrap {
 		display: flex;
 		align-items: baseline;
 		gap: 4px;
-		margin-bottom: var(--s-24);
+		margin-bottom: 16px;
 		color: #fff;
 	}
 
-	.symbol {
-		font-size: 1.5rem;
-		font-weight: 700;
+	.currency { font-size: 1.5rem; font-weight: 700; }
+	.amount { font-size: 4.5rem; font-weight: 900; letter-spacing: -0.05em; line-height: 1; }
+	.period { font-size: 0.8rem; color: var(--steel-dim); }
+
+	.desc { font-size: 0.95rem; color: var(--steel-dim); margin-bottom: var(--s-48); }
+
+	.feat-list { list-style: none; display: grid; gap: 12px; margin-bottom: var(--s-64); }
+	.feat-list li { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--steel); font-weight: 600; }
+	.feat-dot { width: 4px; height: 4px; background: var(--tactical-blue); transform: rotate(45deg); flex-shrink: 0; }
+
+	.tier-foot { margin-top: auto; }
+	.w-full { width: 100%; }
+
+	.tier-frame {
+		position: absolute;
+		top: 0; left: 0; width: 100%; height: 100%;
+		pointer-events: none;
+		border: 1px solid transparent;
+		transition: all 0.3s ease;
 	}
 
-	.value {
-		font-size: 4.5rem;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-		line-height: 1;
-	}
-
-	.interval {
-		font-size: 1.15rem;
-		color: var(--text-muted);
-		font-weight: 600;
-	}
-
-	.tier-desc {
-		font-size: 1rem;
-		line-height: 1.6;
-		color: var(--text-muted-alt);
-		margin-bottom: var(--s-40);
-	}
-
-	.divider {
-		height: 1px;
-		background: var(--line);
-		width: 100%;
-		margin-bottom: var(--s-40);
-	}
-
-	.feature-stack {
-		list-style: none;
-		margin-bottom: var(--s-64);
-		display: grid;
-		gap: var(--s-16);
-	}
-
-	.feature-stack li {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		color: var(--text-muted-alt);
-		font-size: 0.95rem;
-		font-weight: 500;
-	}
-
-	.check-circle {
-		width: 22px;
-		height: 22px;
-		background: rgba(29, 99, 255, 0.1);
-		border-radius: 50%;
-		display: grid;
-		place-items: center;
-		color: var(--blue-2);
-		flex-shrink: 0;
-	}
-
-	.w-full {
-		width: 100%;
+	.tactical-tier:hover .tier-frame {
+		border-color: var(--line-heavy);
+		transform: scale(1.02);
 	}
 
 	@media (max-width: 768px) {
-		.pricing-card-wrap {
-			padding: var(--s-48) var(--s-32);
-		}
-		
-		.value {
-			font-size: 3.5rem;
-		}
+		.tactical-tier { padding: var(--s-48) var(--s-24); }
+		.amount { font-size: 3.5rem; }
 	}
 </style>

@@ -1,120 +1,103 @@
 ---
 interface Props {
 	href?: string;
-	variant?: 'primary' | 'secondary' | 'outline';
-	size?: 'sm' | 'md' | 'lg';
+	variant?: 'tactical' | 'ghost' | 'danger';
 	className?: string;
 	[x: string]: any;
 }
 
-const { 
-	href, 
-	variant = 'primary', 
-	size = 'md',
-	className = '', 
-	...rest 
-} = Astro.props;
+const { href, variant = 'tactical', className = '', ...rest } = Astro.props;
 
 const Element = href ? 'a' : 'button';
 
-const sizes = {
-	sm: "px-5 py-2.5 text-sm",
-	md: "px-7 py-3.5 text-[0.95rem]",
-	lg: "px-9 py-4.5 text-base"
-};
-
 const variants = {
-	primary: "btn-primary",
-	secondary: "btn-secondary",
-	outline: "btn-outline"
+	tactical: "btn-tactical",
+	ghost: "btn-ghost",
+	danger: "btn-danger"
 };
 ---
 
 <Element 
 	href={href} 
-	class:list={["btn-base", variants[variant], sizes[size], className]}
+	class:list={["tactical-button mono", variants[variant], className]}
 	{...rest}
 >
-	<slot />
+	<span class="btn-line"></span>
+	<span class="btn-content">
+		<slot />
+	</span>
+	<span class="btn-corner"></span>
 </Element>
 
 <style>
-	.btn-base {
+	.tactical-button {
+		position: relative;
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
+		padding: 18px 32px;
+		background: transparent;
+		color: #fff;
 		font-weight: 700;
-		border-radius: 999px;
-		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 		cursor: pointer;
-		white-space: nowrap;
-		user-select: none;
+		overflow: hidden;
+		transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+		border: 1px solid var(--line-heavy);
+	}
+
+	.btn-line {
+		position: absolute;
+		top: 0; left: 0; width: 0%; height: 1px;
+		background: var(--tactical-blue);
+		transition: width 0.4s ease;
+	}
+
+	.tactical-button:hover .btn-line {
+		width: 100%;
+	}
+
+	.btn-content {
 		position: relative;
-		letter-spacing: -0.01em;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		gap: 12px;
 	}
 
-	.btn-base:active {
-		transform: scale(0.97);
+	.btn-corner {
+		position: absolute;
+		bottom: -5px; right: -5px;
+		width: 10px; height: 10px;
+		background: var(--line-heavy);
+		transform: rotate(45deg);
+		transition: background 0.3s ease;
 	}
 
-	.btn-primary {
-		background: #fff;
-		color: #050a16;
-		box-shadow: 
-			0 4px 12px rgba(255, 255, 255, 0.1),
-			0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+	.tactical-button:hover .btn-corner {
+		background: var(--tactical-blue);
 	}
 
-	.btn-primary:hover {
-		transform: translateY(-2px);
-		box-shadow: 
-			0 12px 24px -8px rgba(255, 255, 255, 0.25),
-			0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-		background: #f8fafc;
+	/* Variants */
+	.btn-tactical {
+		background: rgba(255, 255, 255, 0.02);
 	}
 
-	.btn-secondary {
-		background: rgba(255, 255, 255, 0.04);
-		color: #f8fafc;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		backdrop-filter: blur(12px);
+	.btn-tactical:hover {
+		background: rgba(29, 99, 255, 0.05);
+		border-color: var(--tactical-blue);
 	}
 
-	.btn-secondary:hover {
-		background: rgba(255, 255, 255, 0.08);
-		border-color: rgba(255, 255, 255, 0.2);
-		transform: translateY(-2px);
-		color: #fff;
+	.btn-ghost {
+		border-color: transparent;
 	}
 
-	.btn-outline {
-		border: 1px solid var(--line-bright);
-		color: var(--text-muted-alt);
+	.btn-ghost:hover {
+		background: rgba(255, 255, 255, 0.05);
 	}
-
-	.btn-outline:hover {
-		background: rgba(255, 255, 255, 0.04);
-		border-color: #fff;
-		color: #fff;
-		transform: translateY(-2px);
-	}
-
-	/* Tailwind-style utility mappings for component logic */
-	.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
-	.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
-	.text-sm { font-size: 0.875rem; }
-
-	.px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
-	.py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
-
-	.px-9 { padding-left: 2.25rem; padding-right: 2.25rem; }
-	.py-4\.5 { padding-top: 1.125rem; padding-bottom: 1.125rem; }
-	.text-base { font-size: 1rem; }
 
 	@media (max-width: 768px) {
-		.btn-base {
+		.tactical-button {
 			width: 100%;
-			font-size: 1rem;
+			justify-content: center;
 		}
 	}
 </style>
