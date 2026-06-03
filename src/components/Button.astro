@@ -1,0 +1,120 @@
+---
+interface Props {
+	href?: string;
+	variant?: 'primary' | 'secondary' | 'outline';
+	size?: 'sm' | 'md' | 'lg';
+	className?: string;
+	[x: string]: any;
+}
+
+const { 
+	href, 
+	variant = 'primary', 
+	size = 'md',
+	className = '', 
+	...rest 
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+
+const sizes = {
+	sm: "px-5 py-2.5 text-sm",
+	md: "px-7 py-3.5 text-[0.95rem]",
+	lg: "px-9 py-4.5 text-base"
+};
+
+const variants = {
+	primary: "btn-primary",
+	secondary: "btn-secondary",
+	outline: "btn-outline"
+};
+---
+
+<Element 
+	href={href} 
+	class:list={["btn-base", variants[variant], sizes[size], className]}
+	{...rest}
+>
+	<slot />
+</Element>
+
+<style>
+	.btn-base {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		border-radius: 999px;
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		cursor: pointer;
+		white-space: nowrap;
+		user-select: none;
+		position: relative;
+		letter-spacing: -0.01em;
+	}
+
+	.btn-base:active {
+		transform: scale(0.97);
+	}
+
+	.btn-primary {
+		background: #fff;
+		color: #050a16;
+		box-shadow: 
+			0 4px 12px rgba(255, 255, 255, 0.1),
+			0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 
+			0 12px 24px -8px rgba(255, 255, 255, 0.25),
+			0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+		background: #f8fafc;
+	}
+
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.04);
+		color: #f8fafc;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(12px);
+	}
+
+	.btn-secondary:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-2px);
+		color: #fff;
+	}
+
+	.btn-outline {
+		border: 1px solid var(--line-bright);
+		color: var(--text-muted-alt);
+	}
+
+	.btn-outline:hover {
+		background: rgba(255, 255, 255, 0.04);
+		border-color: #fff;
+		color: #fff;
+		transform: translateY(-2px);
+	}
+
+	/* Tailwind-style utility mappings for component logic */
+	.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+	.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+	.text-sm { font-size: 0.875rem; }
+
+	.px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
+	.py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
+
+	.px-9 { padding-left: 2.25rem; padding-right: 2.25rem; }
+	.py-4\.5 { padding-top: 1.125rem; padding-bottom: 1.125rem; }
+	.text-base { font-size: 1rem; }
+
+	@media (max-width: 768px) {
+		.btn-base {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+</style>

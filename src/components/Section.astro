@@ -1,0 +1,81 @@
+---
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	centered?: boolean;
+	dark?: boolean;
+	className?: string;
+}
+
+const { id, eyebrow, title, description, centered = true, dark = false, className = '' } = Astro.props;
+---
+
+<section id={id} class:list={["section-wrap", { "is-dark": dark }, className]}>
+	<div class="container">
+		<div class:list={["header-stack", { "mx-auto text-center": centered }, "reveal"]}>
+			{eyebrow && <span class="section-eyebrow">{eyebrow}</span>}
+			<h2 class="section-h2" set:html={title}></h2>
+			{description && <p class="section-p">{description}</p>}
+		</div>
+		<div class="section-content reveal" style="animation-delay: 0.15s;">
+			<slot />
+		</div>
+	</div>
+</section>
+
+<style>
+	.section-wrap {
+		padding: var(--section-padding) 0;
+		position: relative;
+	}
+
+	.is-dark {
+		background: var(--bg-alt);
+		border-block: 1px solid var(--line);
+	}
+
+	.header-stack {
+		max-width: 800px;
+		margin-bottom: var(--s-80);
+	}
+
+	.section-eyebrow {
+		display: inline-block;
+		color: var(--blue-2);
+		font-size: 0.7rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		margin-bottom: var(--s-24);
+	}
+
+	.section-h2 {
+		font-size: clamp(2.25rem, 5vw, 4rem);
+		color: #fff;
+		margin-bottom: var(--s-32);
+		line-height: 1.05;
+	}
+
+	.section-p {
+		font-size: 1.15rem;
+		color: var(--text-muted);
+		line-height: 1.6;
+		max-width: 680px;
+	}
+
+	.mx-auto .section-p {
+		margin-inline: auto;
+	}
+
+	@media (max-width: 768px) {
+		.header-stack {
+			margin-bottom: var(--s-48);
+		}
+		
+		.section-p {
+			font-size: 1.0625rem;
+		}
+	}
+</style>

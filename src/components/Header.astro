@@ -1,0 +1,227 @@
+---
+import Button from './Button.astro';
+
+const navItems = [
+	{ label: 'Services', href: '#services' },
+	{ label: 'Pricing', href: '#pricing' },
+	{ label: 'Process', href: '#process' },
+	{ label: 'Demo', href: '#demo' },
+	{ label: 'FAQ', href: '#faq' },
+];
+
+const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northlinedev.com/?ismsaljsauthenabled";
+---
+
+<header class="header">
+	<div class="container header-inner">
+		<a href="/" class="brand">
+			<div class="brand-mark">
+				<i></i><i></i><i></i>
+			</div>
+			<span>NorthlineDev</span>
+		</a>
+
+		<nav class="desktop-nav">
+			<ul class="nav-links">
+				{navItems.map(item => (
+					<li><a href={item.href}>{item.label}</a></li>
+				))}
+			</ul>
+		</nav>
+
+		<div class="actions">
+			<Button href={bookingLink} variant="secondary" size="sm" className="nav-cta">
+				Free Audit
+			</Button>
+			
+			<button class="menu-toggle" aria-label="Toggle Menu" id="menuToggle">
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</div>
+
+	<!-- Mobile Menu Overlay -->
+	<div class="mobile-menu" id="mobileMenu">
+		<div class="container">
+			<nav class="mobile-nav">
+				{navItems.map(item => (
+					<a href={item.href} class="mobile-link">{item.label}</a>
+				))}
+				<Button href={bookingLink} variant="primary" size="lg" className="mt-8">
+					Book Free Audit
+				</Button>
+			</nav>
+		</div>
+	</div>
+</header>
+
+<script>
+	const toggle = document.getElementById('menuToggle');
+	const menu = document.getElementById('mobileMenu');
+	const links = document.querySelectorAll('.mobile-link');
+
+	if (toggle && menu) {
+		toggle.addEventListener('click', () => {
+			const isOpen = menu.classList.toggle('is-open');
+			toggle.classList.toggle('is-active');
+			document.body.style.overflow = isOpen ? 'hidden' : '';
+		});
+
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				menu.classList.remove('is-open');
+				toggle.classList.remove('is-active');
+				document.body.style.overflow = '';
+			});
+		});
+	}
+</script>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(5, 10, 22, 0.6);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid var(--line);
+		height: 72px;
+		display: flex;
+		align-items: center;
+	}
+
+	.header-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		font-weight: 850;
+		font-size: 1.125rem;
+		letter-spacing: -0.03em;
+		color: #fff;
+	}
+
+	.brand-mark {
+		width: 32px;
+		height: 32px;
+		display: grid;
+		place-items: center;
+		gap: 2px;
+		padding: 5px;
+		border-radius: 8px;
+		background: linear-gradient(135deg, #1d63ff 0%, #3b82f6 100%);
+		box-shadow: 0 8px 16px rgba(29, 99, 255, 0.2);
+	}
+
+	.brand-mark i {
+		width: 16px;
+		height: 4px;
+		display: block;
+		clip-path: polygon(50% 0, 100% 75%, 85% 100%, 50% 45%, 15% 100%, 0 75%);
+		background: rgba(255, 255, 255, 0.9);
+	}
+
+	.brand-mark i:last-child {
+		background: rgba(2, 6, 23, 0.4);
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+	}
+
+	.nav-links a {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--text-muted);
+	}
+
+	.nav-links a:hover {
+		color: #fff;
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 6px;
+		padding: 8px;
+		z-index: 110;
+	}
+
+	.menu-toggle span {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: #fff;
+		transition: all 0.3s ease;
+	}
+
+	.menu-toggle.is-active span:first-child {
+		transform: translateY(4px) rotate(45deg);
+	}
+
+	.menu-toggle.is-active span:last-child {
+		transform: translateY(-4px) rotate(-45deg);
+	}
+
+	.mobile-menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: var(--bg);
+		z-index: 105;
+		padding-top: 120px;
+		transform: translateY(-100%);
+		transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+		visibility: hidden;
+	}
+
+	.mobile-menu.is-open {
+		transform: translateY(0);
+		visibility: visible;
+	}
+
+	.mobile-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.mobile-link {
+		font-size: 2rem;
+		font-weight: 800;
+		color: #fff;
+		letter-spacing: -0.04em;
+	}
+
+	@media (max-width: 1024px) {
+		.desktop-nav {
+			display: none;
+		}
+
+		.nav-cta {
+			display: none;
+		}
+
+		.menu-toggle {
+			display: flex;
+		}
+	}
+
+	.mt-8 { margin-top: 2rem; }
+</style>

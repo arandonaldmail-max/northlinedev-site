@@ -1,0 +1,190 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerNav = [
+	{ label: 'Services', href: '#services' },
+	{ label: 'Pricing', href: '#pricing' },
+	{ label: 'Process', href: '#process' },
+	{ label: 'Demo', href: '#demo' },
+	{ label: 'FAQ', href: '#faq' },
+];
+---
+
+<footer class="footer">
+	<div class="container footer-grid">
+		<div class="footer-brand">
+			<a href="/" class="brand">
+				<div class="brand-mark">
+					<i></i><i></i><i></i>
+				</div>
+				<span>NorthlineDev</span>
+			</a>
+			<p class="bio">
+				The growth partner for elite roofing companies. We combine premium design with high-converting systems.
+			</p>
+		</div>
+
+		<div class="footer-nav">
+			<h4 class="footer-h4">Product</h4>
+			<ul class="footer-list">
+				{footerNav.map(item => (
+					<li><a href={item.href}>{item.label}</a></li>
+				))}
+			</ul>
+		</div>
+
+		<div class="footer-contact">
+			<h4 class="footer-h4">Connect</h4>
+			<a href="mailto:aran@northlinedev.com" class="email">aran@northlinedev.com</a>
+			<p class="availability">Booking audits for Q3 2026</p>
+		</div>
+	</div>
+
+	<div class="container footer-bottom">
+		<div class="bottom-inner">
+			<p class="copyright">&copy; {currentYear} NorthlineDev. All rights reserved.</p>
+			<div class="legal">
+				<a href="#">Privacy</a>
+				<a href="#">Terms</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding: var(--s-128) 0 var(--s-48);
+		background: #020617;
+		border-top: 1px solid var(--line);
+	}
+
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr 1.2fr;
+		gap: var(--s-96);
+		margin-bottom: var(--s-96);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		font-weight: 850;
+		font-size: 1.25rem;
+		color: #fff;
+		margin-bottom: var(--s-32);
+		letter-spacing: -0.03em;
+	}
+
+	.brand-mark {
+		width: 32px;
+		height: 32px;
+		display: grid;
+		place-items: center;
+		gap: 2px;
+		padding: 5px;
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.brand-mark i {
+		width: 16px;
+		height: 4px;
+		display: block;
+		clip-path: polygon(50% 0, 100% 75%, 85% 100%, 50% 45%, 15% 100%, 0 75%);
+		background: var(--blue-2);
+	}
+
+	.brand-mark i:last-child {
+		background: #020617;
+	}
+
+	.bio {
+		font-size: 1rem;
+		color: var(--text-muted);
+		max-width: 320px;
+		line-height: 1.6;
+	}
+
+	.footer-h4 {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: #fff;
+		margin-bottom: var(--s-32);
+		font-weight: 800;
+	}
+
+	.footer-list {
+		list-style: none;
+		display: grid;
+		gap: var(--s-16);
+	}
+
+	.footer-list a {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.footer-list a:hover {
+		color: #fff;
+	}
+
+	.email {
+		display: block;
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #fff;
+		margin-bottom: 12px;
+	}
+
+	.email:hover {
+		color: var(--blue-2);
+	}
+
+	.availability {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+	}
+
+	.footer-bottom {
+		padding-top: var(--s-48);
+		border-top: 1px solid var(--line);
+	}
+
+	.bottom-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: var(--text-muted);
+		font-size: 0.875rem;
+	}
+
+	.legal {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.legal a:hover {
+		color: #fff;
+	}
+
+	@media (max-width: 1024px) {
+		.footer-grid {
+			grid-template-columns: 1fr 1fr;
+			gap: var(--s-64);
+		}
+		.footer-contact { grid-column: span 2; }
+	}
+
+	@media (max-width: 768px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: var(--s-48);
+		}
+		.footer-contact { grid-column: span 1; }
+		.bottom-inner { flex-direction: column; gap: 24px; text-align: center; }
+	}
+</style>

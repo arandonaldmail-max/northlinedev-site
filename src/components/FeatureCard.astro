@@ -1,0 +1,139 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	icon?: string;
+	number?: string;
+	variant?: 'default' | 'outline' | 'ghost';
+}
+
+const { title, description, icon, number, variant = 'default' } = Astro.props;
+---
+
+<div class:list={["card-wrapper", variant]}>
+	<div class="card-inner">
+		{number && <span class="number-tag">{number}</span>}
+		
+		<div class="icon-box">
+			{icon ? <div class="svg-wrap" set:html={icon} /> : <div class="dot-indicator"></div>}
+		</div>
+
+		<h3 class="title">{title}</h3>
+		<p class="description">{description}</p>
+	</div>
+	
+	<!-- Card Border Light Effect -->
+	<div class="border-gradient"></div>
+</div>
+
+<style>
+	.card-wrapper {
+		position: relative;
+		border-radius: var(--radius-lg);
+		background: var(--card);
+		padding: 1px; /* Gap for border effect */
+		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.card-inner {
+		background: #0b1120;
+		border-radius: calc(var(--radius-lg) - 1px);
+		padding: var(--s-48) var(--s-32);
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		z-index: 2;
+	}
+
+	.card-wrapper:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 32px 64px -16px rgba(0,0,0,0.5);
+	}
+
+	.card-wrapper:hover .card-inner {
+		background: #0f172a;
+	}
+
+	.number-tag {
+		font-size: 0.7rem;
+		font-weight: 800;
+		color: var(--blue-2);
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		margin-bottom: var(--s-32);
+		display: block;
+	}
+
+	.icon-box {
+		width: 44px;
+		height: 44px;
+		margin-bottom: var(--s-32);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.svg-wrap {
+		color: var(--blue-2);
+		transition: transform 0.3s ease;
+	}
+
+	.card-wrapper:hover .svg-wrap {
+		transform: scale(1.1);
+	}
+
+	.dot-indicator {
+		width: 10px;
+		height: 10px;
+		background: var(--blue-2);
+		border-radius: 3px;
+		box-shadow: 0 0 10px var(--blue-glow);
+	}
+
+	.title {
+		font-size: 1.35rem;
+		color: #fff;
+		margin-bottom: var(--s-16);
+		letter-spacing: -0.02em;
+	}
+
+	.description {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--text-muted);
+	}
+
+	/* Border Light Effect */
+	.border-gradient {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
+		opacity: 0;
+		transition: opacity 0.4s;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.card-wrapper:hover .border-gradient {
+		opacity: 1;
+	}
+
+	/* Variants */
+	.outline .card-inner {
+		background: transparent;
+		border: 1px solid var(--line);
+	}
+
+	@media (max-width: 768px) {
+		.card-inner {
+			padding: var(--s-32) var(--s-24);
+		}
+	}
+</style>

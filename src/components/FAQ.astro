@@ -1,0 +1,129 @@
+---
+const faqs = [
+	{
+		question: "Is NorthlineDev only for roofing companies?",
+		answer: "Yes. NorthlineDev is built specifically for roofing companies. We understand the unique challenges of the roofing industry, from storm lead spikes to seasonal roofing demand."
+	},
+	{
+		question: "What if I already have a website?",
+		answer: "The free audit will show where your current website may be losing trust, estimate requests, mobile conversions, or follow-up opportunities. Most of our clients already had a website that wasn't performing before they joined us."
+	},
+	{
+		question: "Do I need the Growth System right away?",
+		answer: "No. You can start with the &euro;997 Professional Roofing Website Setup. It's designed to be high-converting from day one and can be fully integrated with the Growth System when you're ready to scale your operations."
+	},
+	{
+		question: "What is included in the free website audit?",
+		answer: "We perform a deep-dive review of your design, mobile experience, calls to action, trust signals, lead capture forms, and follow-up gaps. You'll receive a detailed breakdown of exactly what's costing you leads."
+	}
+];
+---
+
+<div class="faq-accordion">
+	{faqs.map(faq => (
+		<details class="faq-item">
+			<summary class="faq-header">
+				<span class="faq-q">{faq.question}</span>
+				<div class="faq-trigger">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</div>
+			</summary>
+			<div class="faq-content">
+				<p class="faq-a">{faq.answer}</p>
+			</div>
+		</details>
+	))}
+</div>
+
+<style>
+	.faq-accordion {
+		max-width: 800px;
+		margin-inline: auto;
+		display: grid;
+		gap: var(--s-16);
+	}
+
+	.faq-item {
+		background: var(--card);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.faq-item[open] {
+		border-color: var(--line-bright);
+		background: #0f172a;
+	}
+
+	.faq-header {
+		list-style: none;
+		padding: var(--s-32);
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		user-select: none;
+	}
+
+	.faq-header::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-q {
+		font-weight: 700;
+		color: #fff;
+		font-size: 1.1rem;
+		letter-spacing: -0.01em;
+		padding-right: 2rem;
+	}
+
+	.faq-trigger {
+		width: 32px;
+		height: 32px;
+		display: grid;
+		place-items: center;
+		color: var(--blue-2);
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		background: rgba(29, 99, 255, 0.05);
+		border-radius: 8px;
+	}
+
+	.faq-item[open] .faq-trigger {
+		transform: rotate(135deg);
+		background: rgba(29, 99, 255, 0.15);
+	}
+
+	.faq-content {
+		padding: 0 var(--s-32) var(--s-32);
+	}
+
+	.faq-a {
+		color: var(--text-muted);
+		line-height: 1.6;
+		font-size: 1.05rem;
+		animation: slide-in 0.4s ease forwards;
+	}
+
+	@keyframes slide-in {
+		from { opacity: 0; transform: translateY(-8px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (max-width: 768px) {
+		.faq-header {
+			padding: var(--s-24);
+		}
+		
+		.faq-q {
+			font-size: 1rem;
+		}
+
+		.faq-content {
+			padding: 0 var(--s-24) var(--s-24);
+		}
+	}
+</style>

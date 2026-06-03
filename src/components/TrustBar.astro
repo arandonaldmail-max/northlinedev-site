@@ -1,0 +1,111 @@
+---
+const items = [
+	"Roofing Companies Only",
+	"Premium Website Setup",
+	"Lead Management",
+	"AI Follow-Up",
+	"Appointment Booking",
+	"Review Collection"
+];
+---
+
+<div class="scroller-container">
+	<div class="scroller-track">
+		<div class="scroller-content">
+			{items.map(item => (
+				<div class="trust-pill">
+					<div class="dot"></div>
+					<span>{item}</span>
+				</div>
+			))}
+		</div>
+		<!-- Duplicate for seamless loop -->
+		<div class="scroller-content" aria-hidden="true">
+			{items.map(item => (
+				<div class="trust-pill">
+					<div class="dot"></div>
+					<span>{item}</span>
+				</div>
+			))}
+		</div>
+	</div>
+	
+	<div class="mask-left"></div>
+	<div class="mask-right"></div>
+</div>
+
+<style>
+	.scroller-container {
+		padding: var(--s-32) 0;
+		border-block: 1px solid var(--line);
+		background: rgba(2, 6, 23, 0.4);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.scroller-track {
+		display: flex;
+		width: max-content;
+		animation: scroll 40s linear infinite;
+	}
+
+	.scroller-content {
+		display: flex;
+		align-items: center;
+		gap: var(--s-48);
+		padding-right: var(--s-48);
+	}
+
+	.trust-pill {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		white-space: nowrap;
+	}
+
+	.dot {
+		width: 6px;
+		height: 6px;
+		background: var(--blue-2);
+		border-radius: 50%;
+		opacity: 0.5;
+	}
+
+	.trust-pill span {
+		color: var(--text-muted-alt);
+		font-weight: 700;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+	}
+
+	.mask-left, .mask-right {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 150px;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.mask-left {
+		left: 0;
+		background: linear-gradient(to right, var(--bg), transparent);
+	}
+
+	.mask-right {
+		right: 0;
+		background: linear-gradient(to left, var(--bg), transparent);
+	}
+
+	@keyframes scroll {
+		from { transform: translateX(0); }
+		to { transform: translateX(-50%); }
+	}
+
+	@media (max-width: 768px) {
+		.scroller-container { padding: var(--s-24) 0; }
+		.scroller-content { gap: var(--s-32); padding-right: var(--s-32); }
+		.mask-left, .mask-right { width: 60px; }
+	}
+</style>

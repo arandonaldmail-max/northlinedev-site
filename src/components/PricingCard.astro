@@ -1,0 +1,174 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+	title: string;
+	price: string;
+	period?: string;
+	description: string;
+	features: string[];
+	ctaLabel: string;
+	ctaLink: string;
+	highlight?: boolean;
+}
+
+const { 
+	title, 
+	price, 
+	period, 
+	description, 
+	features, 
+	ctaLabel, 
+	ctaLink, 
+	highlight = false 
+} = Astro.props;
+---
+
+<div class:list={["pricing-card-wrap", { "is-highlighted": highlight }]}>
+	<div class="card-body">
+		<h3 class="tier-name">{title}</h3>
+		
+		<div class="price-unit">
+			<span class="symbol">&euro;</span>
+			<span class="value">{price}</span>
+			{period && <span class="interval">/{period}</span>}
+		</div>
+
+		<p class="tier-desc">{description}</p>
+		
+		<div class="divider"></div>
+
+		<ul class="feature-stack">
+			{features.map(feature => (
+				<li>
+					<div class="check-circle">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="20 6 9 17 4 12"></polyline>
+						</svg>
+					</div>
+					<span>{feature}</span>
+				</li>
+			))}
+		</ul>
+	</div>
+
+	<Button href={ctaLink} variant={highlight ? 'primary' : 'outline'} className="w-full">
+		{ctaLabel}
+	</Button>
+</div>
+
+<style>
+	.pricing-card-wrap {
+		background: #0b1120;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		padding: var(--s-64) var(--s-48);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		height: 100%;
+	}
+
+	.pricing-card-wrap.is-highlighted {
+		background: #0f172a;
+		border-color: rgba(59, 130, 246, 0.3);
+		box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+	}
+
+	.pricing-card-wrap:hover {
+		transform: translateY(-8px);
+		border-color: var(--line-bright);
+	}
+
+	.tier-name {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: var(--blue-2);
+		margin-bottom: var(--s-32);
+		font-weight: 800;
+	}
+
+	.price-unit {
+		display: flex;
+		align-items: baseline;
+		gap: 4px;
+		margin-bottom: var(--s-24);
+		color: #fff;
+	}
+
+	.symbol {
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+
+	.value {
+		font-size: 4.5rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+		line-height: 1;
+	}
+
+	.interval {
+		font-size: 1.15rem;
+		color: var(--text-muted);
+		font-weight: 600;
+	}
+
+	.tier-desc {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--text-muted-alt);
+		margin-bottom: var(--s-40);
+	}
+
+	.divider {
+		height: 1px;
+		background: var(--line);
+		width: 100%;
+		margin-bottom: var(--s-40);
+	}
+
+	.feature-stack {
+		list-style: none;
+		margin-bottom: var(--s-64);
+		display: grid;
+		gap: var(--s-16);
+	}
+
+	.feature-stack li {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		color: var(--text-muted-alt);
+		font-size: 0.95rem;
+		font-weight: 500;
+	}
+
+	.check-circle {
+		width: 22px;
+		height: 22px;
+		background: rgba(29, 99, 255, 0.1);
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		color: var(--blue-2);
+		flex-shrink: 0;
+	}
+
+	.w-full {
+		width: 100%;
+	}
+
+	@media (max-width: 768px) {
+		.pricing-card-wrap {
+			padding: var(--s-48) var(--s-32);
+		}
+		
+		.value {
+			font-size: 3.5rem;
+		}
+	}
+</style>

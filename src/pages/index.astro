@@ -1,0 +1,476 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
+import Section from '../components/Section.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Button from '../components/Button.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+
+const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northlinedev.com/?ismsaljsauthenabled";
+
+const icons = {
+	trust: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+	leads: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+	calendar: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+	star: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+	capture: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`,
+	manage: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`,
+	follow: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.8"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
+	chart: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
+};
+---
+
+<Layout title="NorthlineDev | Premium Roofing Websites & Growth Systems">
+	<Header />
+	
+	<main>
+		<Hero />
+		<TrustBar />
+
+		<!-- Problem Section -->
+		<Section 
+			id="problem"
+			eyebrow="The Problem"
+			title="Most Roofing Companies Don't Have A Lead Problem. <br/>They Have A System Problem."
+			description="A better-looking website is not enough if leads are missed, follow-up is slow, and appointments are manual."
+		>
+			<div class="card-grid-4">
+				<FeatureCard 
+					icon={icons.trust}
+					title="Website Doesn't Build Trust" 
+					description="Homeowners judge your roofing company within seconds. If your website looks dated or unclear, they move on to a competitor."
+				/>
+				<FeatureCard 
+					icon={icons.leads}
+					title="Leads Aren't Followed Up" 
+					description="Missed calls and slow replies make it easy for serious roofing buyers to choose someone else who answers faster."
+				/>
+				<FeatureCard 
+					icon={icons.calendar}
+					title="Appointments Slip Away" 
+					description="If booking an estimate feels difficult or requires multiple phone tags, interested homeowners often delay or contact someone else."
+				/>
+				<FeatureCard 
+					icon={icons.star}
+					title="Reviews Are Not Collected" 
+					description="Without a dedicated review system, many satisfied customers never leave the feedback that helps you win future jobs."
+				/>
+			</div>
+		</Section>
+
+		<!-- Opportunity Leakage -->
+		<Section 
+			id="leakage"
+			eyebrow="Opportunity Leakage"
+			title="Where Your Roofing Opportunities <br/>Slip Through The Cracks."
+			description="More traffic does not fix a broken system. NorthlineDev helps close the gaps between visitors and booked jobs."
+			dark={true}
+		>
+			<div class="card-grid-5">
+				<FeatureCard number="01 Visitor" title="Trust Gap" description="Your website fails to create instant trust, causing immediate bounce." />
+				<FeatureCard number="02 Lead" title="Capture Gap" description="The estimate form is weak, hidden, or too long, losing potential leads." />
+				<FeatureCard number="03 Follow-Up" title="Speed Gap" description="Leads go cold when replies take hours instead of minutes." />
+				<FeatureCard number="04 Appointment" title="Friction Gap" description="Scheduling friction creates drop-off before the estimate is booked." />
+				<FeatureCard number="05 Review" title="Reputation Gap" description="Satisfied customers are never asked for reviews, hurting your future growth." />
+			</div>
+		</Section>
+
+		<!-- Solution Section -->
+		<Section 
+			id="services"
+			eyebrow="The Solution"
+			title="One Roofing Growth System <br/>For The Entire Lead Journey."
+			description="NorthlineDev gives roofers a professional website and the system behind it, ensuring every lead has a clear path from first click to booked estimate."
+			centered={false}
+		>
+			<div class="split-layout">
+				<div class="content-side">
+					<p class="lead-text mb-32">
+						Our system is built specifically for the roofing industry. We don't just build websites; we build high-converting assets that work for you 24/7.
+					</p>
+					<div class="bullet-list">
+						<div class="bullet-item">
+							<strong>Integrated CRM</strong>
+							<span>Keep track of every lead and opportunity from a single dashboard.</span>
+						</div>
+						<div class="bullet-item">
+							<strong>Automated Booking</strong>
+							<span>Let homeowners book estimates without a single phone call or manual text.</span>
+						</div>
+					</div>
+					<Button href={bookingLink} variant="primary" size="lg" className="mt-64">
+						Get Your Free Audit
+					</Button>
+				</div>
+				<div class="grid-side">
+					<FeatureCard icon={icons.capture} title="Capture" description="Premium roofing websites built to create trust and generate estimate requests." />
+					<FeatureCard icon={icons.manage} title="Manage" description="CRM, pipeline, lead tracking, and customer management in one place." />
+					<FeatureCard icon={icons.follow} title="Follow Up" description="AI follow-up, SMS marketing, email marketing, and automated reminders." />
+					<FeatureCard icon={icons.chart} title="Improve" description="Analytics dashboard and visibility into your roofing growth system." />
+				</div>
+			</div>
+		</Section>
+
+		<!-- Pricing Section -->
+		<Section 
+			id="pricing"
+			eyebrow="Pricing"
+			title="Simple Offers Built To Help Roofers Grow."
+			description="Start with the website. Add the Growth System when you want your leads, appointments, and follow-up connected."
+			dark={true}
+		>
+			<div class="pricing-flex">
+				<PricingCard 
+					title="Professional Website Setup"
+					price="997"
+					description="A premium roofing website designed to build trust, capture leads, and support future integration."
+					features={[
+						"Premium Roofing Design",
+						"Mobile-First Responsive Layout",
+						"Conversion-Focused Homepage",
+						"Service-Specific Landing Pages",
+						"Advanced Lead Capture Forms",
+						"Branding & Logo Integration",
+						"Basic SEO Foundation"
+					]}
+					ctaLabel="Request Website Audit"
+					ctaLink={bookingLink}
+				/>
+				<PricingCard 
+					title="Roofing Growth System"
+					price="300"
+					period="mo"
+					highlight={true}
+					description="A connected lead management and follow-up system that helps reduce missed opportunities."
+					features={[
+						"7-Day Free Trial Included",
+						"CRM & Pipeline Management",
+						"Automated AI Follow-Up",
+						"SMS & Email Marketing",
+						"Direct Appointment Booking",
+						"Review Collection System",
+						"Growth Analytics Dashboard"
+					]}
+					ctaLabel="Request Growth Audit"
+					ctaLink={bookingLink}
+				/>
+			</div>
+		</Section>
+
+		<!-- Process Section -->
+		<Section 
+			id="process"
+			eyebrow="Process"
+			title="From Website Audit To Roofing Growth System."
+			description="A clear process designed to help you understand what is broken, fix the first impression, and connect the systems."
+		>
+			<div class="card-grid-4">
+				<FeatureCard number="01" title="Free Website Audit" description="We review your website, mobile experience, trust signals, lead forms, and follow-up gaps." />
+				<FeatureCard number="02" title="Growth Strategy" description="We map the website, lead flow, appointment process, review system, and automations." />
+				<FeatureCard number="03" title="Website Build" description="We create a premium roofing website designed to turn visitors into estimate requests." />
+				<FeatureCard number="04" title="System Setup" description="We connect leads, appointments, follow-up, reviews, automations, and analytics." />
+			</div>
+		</Section>
+
+		<!-- Demo Section -->
+		<Section 
+			id="demo"
+			eyebrow="Demo Website"
+			title="See What A Premium <br class='desktop-only'/>Roofing Website Looks Like."
+			description="Our demo showcase gives roofers a clear visual of how a modern, trust-focused website can position their company as the safer choice."
+			dark={true}
+			centered={false}
+		>
+			<div class="split-layout">
+				<div class="visual-side">
+					<div class="mockup-browser">
+						<div class="mockup-head">
+							<div class="dots"><span></span><span></span><span></span></div>
+							<div class="url">premium-roofer.com</div>
+						</div>
+						<div class="mockup-body">
+							<div class="mockup-content">
+								<small class="tag">Trusted Local Experts</small>
+								<h3 class="h3">Roofing Done Right. <br/>Built To Protect Your Home.</h3>
+								<div class="btn">Get Fast Estimate</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="info-side">
+					<ul class="check-list">
+						<li>
+							<div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+							<span>Premium contractor branding</span>
+						</li>
+						<li>
+							<div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+							<span>Mobile-first estimate request flow</span>
+						</li>
+						<li>
+							<div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+							<span>Service-specific conversion paths</span>
+						</li>
+						<li>
+							<div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+							<span>Deep trust signal integration</span>
+						</li>
+					</ul>
+					<Button href={bookingLink} variant="primary" size="lg" className="mt-48">Request Your Website Audit</Button>
+				</div>
+			</div>
+		</Section>
+
+		<!-- Founder Section -->
+		<Section 
+			id="about"
+			eyebrow="About NorthlineDev"
+			title="Why We Built NorthlineDev."
+			description="We noticed many roofing companies were losing opportunities long before the sales conversation happened."
+			centered={false}
+		>
+			<div class="split-layout">
+				<div class="visual-side">
+					<div class="founder-card">
+						<div class="avatar">ND</div>
+						<div class="meta">
+							<strong>NorthlineDev</strong>
+							<span>Growth Infrastructure</span>
+						</div>
+					</div>
+				</div>
+				<div class="text-side">
+					<p class="lead-text">
+						Your website should be your hardest working employee. But for most roofers, it's just an online business card that doesn't actually generate business.
+					</p>
+					<p class="lead-text mt-24">
+						NorthlineDev was built to solve the "Lead Leakage" problem with one connected system that helps roofers capture, manage, and convert more opportunities automatically.
+					</p>
+					<Button href={bookingLink} variant="primary" size="lg" className="mt-48">Book A Free Audit</Button>
+				</div>
+			</div>
+		</Section>
+
+		<!-- FAQ Section -->
+		<Section 
+			id="faq"
+			eyebrow="FAQ"
+			title="Questions Roofing Owners Ask <br/>Before Getting Started."
+			description="Clear answers before you book an audit. No pressure. No confusing agency talk."
+			dark={true}
+		>
+			<FAQ />
+		</Section>
+
+		<!-- Final CTA Section -->
+		<Section 
+			id="cta"
+			title="Find Out What Is Costing You <br class='desktop-only'/>Roofing Opportunities."
+			description="Get a free website audit and personalized recommendations to improve your online presence and lead capture system."
+			className="cta-final"
+		>
+			<div class="cta-banner">
+				<div class="cta-inner">
+					<h3 class="cta-title">Book Your Free Website Audit</h3>
+					<p class="cta-text">Choose a time that works for you. Our audits are high-value, zero-pressure calls designed to help you grow your roofing company.</p>
+					<div class="cta-actions">
+						<Button href={bookingLink} variant="primary" size="lg">Book My Free Audit</Button>
+						<a href="mailto:aran@northlinedev.com" class="cta-link">aran@northlinedev.com</a>
+					</div>
+				</div>
+				
+				<div class="cta-glow"></div>
+			</div>
+		</Section>
+
+	</main>
+
+	<Footer />
+</Layout>
+
+<style>
+	/* Grid Layouts */
+	.card-grid-4 {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--s-32);
+	}
+
+	.card-grid-5 {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: var(--s-24);
+	}
+
+	.split-layout {
+		display: grid;
+		grid-template-columns: 1fr 1.2fr;
+		gap: var(--s-96);
+		align-items: center;
+	}
+
+	.grid-side {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--s-24);
+	}
+
+	.pricing-flex {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--s-48);
+		max-width: 1000px;
+		margin-inline: auto;
+	}
+
+	/* Text Styles */
+	.lead-text {
+		font-size: 1.25rem;
+		color: var(--text-muted-alt);
+		line-height: 1.6;
+	}
+
+	.bullet-list {
+		display: grid;
+		gap: var(--s-32);
+	}
+
+	.bullet-item {
+		border-left: 2px solid var(--blue-2);
+		padding-left: var(--s-24);
+	}
+
+	.bullet-item strong {
+		display: block;
+		color: #fff;
+		margin-bottom: 4px;
+		font-size: 1.1rem;
+	}
+
+	.bullet-item span {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
+
+	/* Mockup Visuals */
+	.mockup-browser {
+		background: #0b1120;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--line-bright);
+		overflow: hidden;
+		box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6);
+	}
+
+	.mockup-head {
+		background: #0f172a;
+		padding: 14px 20px;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.dots { display: flex; gap: 8px; }
+	.dots span { width: 8px; height: 8px; border-radius: 50%; background: #334155; }
+	.url { flex: 1; background: #1e293b; border-radius: 4px; padding: 4px 12px; font-size: 0.7rem; color: var(--text-muted); }
+
+	.mockup-body {
+		padding: var(--s-80) var(--s-40);
+		background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.mockup-content .tag { text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue-2); font-weight: 800; font-size: 0.7rem; display: block; margin-bottom: 12px; }
+	.mockup-content .h3 { font-size: 1.75rem; margin-bottom: 24px; color: #fff; }
+	.mockup-content .btn { background: #fff; color: #050a16; padding: 10px 24px; border-radius: 99px; font-weight: 700; font-size: 0.8rem; display: inline-block; }
+
+	.check-list { list-style: none; display: grid; gap: var(--s-20); }
+	.check-list li { display: flex; align-items: center; gap: 14px; color: var(--text-muted-alt); font-weight: 600; }
+	.check-list .check { width: 24px; height: 24px; background: rgba(29, 99, 255, 0.1); border-radius: 50%; display: grid; place-items: center; color: var(--blue-2); flex-shrink: 0; }
+
+	/* Founder Visual */
+	.founder-card {
+		background: var(--card);
+		border: 1px solid var(--line);
+		padding: var(--s-40);
+		border-radius: var(--radius-lg);
+		display: flex;
+		align-items: center;
+		gap: var(--s-24);
+		max-width: 400px;
+	}
+
+	.avatar {
+		width: 72px;
+		height: 72px;
+		background: linear-gradient(135deg, #1d63ff 0%, #3b82f6 100%);
+		border-radius: 16px;
+		display: grid;
+		place-items: center;
+		font-size: 1.75rem;
+		font-weight: 900;
+		color: #fff;
+	}
+
+	.meta strong { display: block; color: #fff; font-size: 1.25rem; }
+	.meta span { color: var(--text-muted); font-size: 0.9rem; }
+
+	/* Final CTA */
+	.cta-banner {
+		background: #fff;
+		padding: var(--s-128) var(--s-64);
+		border-radius: 40px;
+		position: relative;
+		overflow: hidden;
+		color: #050a16;
+	}
+
+	.cta-inner { position: relative; z-index: 2; max-width: 680px; }
+	.cta-title { font-size: 3.5rem; color: #050a16; margin-bottom: var(--s-24); line-height: 1; }
+	.cta-text { font-size: 1.25rem; color: #334155; margin-bottom: var(--s-48); }
+	.cta-actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+	.cta-link { font-weight: 700; color: #050a16; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 4px; }
+	.cta-link:hover { border-color: #050a16; }
+
+	.cta-glow {
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+		background: radial-gradient(circle at top right, rgba(29, 99, 255, 0.05), transparent 600px);
+		z-index: 1;
+	}
+
+	/* Responsive */
+	@media (max-width: 1200px) {
+		.card-grid-5 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+		.split-layout { gap: var(--s-64); }
+	}
+
+	@media (max-width: 1024px) {
+		.split-layout { grid-template-columns: 1fr; text-align: center; }
+		.grid-side { margin-top: var(--s-64); }
+		.bullet-item { border-left: none; border-top: 2px solid var(--blue-2); padding-left: 0; padding-top: var(--s-24); }
+		.pricing-flex { grid-template-columns: 1fr; }
+		.check-list { justify-content: center; }
+		.founder-card { margin-inline: auto; flex-direction: column; text-align: center; }
+		.cta-banner { padding: var(--s-80) var(--s-32); text-align: center; border-radius: 32px; }
+		.cta-inner { margin-inline: auto; }
+		.cta-actions { justify-content: center; gap: 1.5rem; }
+		.cta-title { font-size: 2.5rem; }
+		.desktop-only { display: none; }
+	}
+
+	@media (max-width: 768px) {
+		.card-grid-5, .grid-side { grid-template-columns: 1fr; }
+	}
+
+	/* Utility Spacing */
+	.mt-24 { margin-top: var(--s-24); }
+	.mt-48 { margin-top: var(--s-48); }
+	.mt-64 { margin-top: var(--s-64); }
+	.mb-32 { margin-bottom: var(--s-32); }
+</style>

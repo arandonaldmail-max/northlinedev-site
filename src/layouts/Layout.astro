@@ -1,0 +1,187 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "NorthlineDev helps roofing companies capture, manage, and convert more opportunities with premium roofing websites and growth systems." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		/* Colors - Linear/Vercel Aesthetic */
+		--bg: #050a16;
+		--bg-alt: #020617;
+		--card: #0b1120;
+		--card-alt: #0f172a;
+		--line: rgba(255, 255, 255, 0.05);
+		--line-bright: rgba(255, 255, 255, 0.1);
+		
+		--text: #f8fafc;
+		--text-muted: #94a3b8;
+		--text-muted-alt: #cbd5e1;
+		
+		--blue: #1d63ff;
+		--blue-2: #3b82f6;
+		--blue-glow: rgba(29, 99, 255, 0.25);
+		
+		/* Spacing System (Geometric Scale) */
+		--s-4: 4px;
+		--s-8: 8px;
+		--s-12: 12px;
+		--s-16: 16px;
+		--s-24: 24px;
+		--s-32: 32px;
+		--s-40: 40px;
+		--s-48: 48px;
+		--s-64: 64px;
+		--s-80: 80px;
+		--s-96: 96px;
+		--s-128: 128px;
+		--s-160: 160px;
+		
+		/* Layout Defaults */
+		--max-width: 1200px;
+		--radius-lg: 20px;
+		--radius-md: 12px;
+		--section-padding: var(--s-128);
+		--section-padding-mobile: var(--s-80);
+	}
+
+	/* Reset & Base */
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		background: var(--bg);
+	}
+
+	body {
+		background: var(--bg);
+		color: var(--text);
+		font-family: 'Inter', system-ui, -apple-system, sans-serif;
+		line-height: 1.5;
+		overflow-x: hidden;
+	}
+
+	::selection {
+		background: rgba(29, 99, 255, 0.3);
+		color: white;
+	}
+
+	img, svg {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	button {
+		font-family: inherit;
+		cursor: pointer;
+		border: none;
+		background: none;
+		outline: none;
+	}
+
+	/* Typography Overhaul */
+	h1, h2, h3, h4 {
+		line-height: 1.1;
+		font-weight: 800;
+		letter-spacing: -0.05em;
+		color: #fff;
+	}
+
+	p {
+		color: var(--text-muted);
+		font-size: 1.0625rem;
+		line-height: 1.6;
+		letter-spacing: -0.01em;
+	}
+
+	/* Global Layout Components */
+	.container {
+		width: min(calc(100% - 48px), var(--max-width));
+		margin-inline: auto;
+	}
+
+	.section {
+		padding: var(--section-padding) 0;
+	}
+
+	/* Interactive Element Defaults */
+	.interactive-scale:active {
+		transform: scale(0.98);
+	}
+
+	/* Fade Up Animation System */
+	@keyframes fade-up {
+		from { opacity: 0; transform: translateY(30px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.reveal {
+		animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+
+	/* Utilities */
+	.text-center { text-align: center; }
+	.mx-auto { margin-inline: auto; }
+
+	@media (max-width: 1024px) {
+		:root {
+			--section-padding: var(--s-96);
+		}
+	}
+
+	@media (max-width: 768px) {
+		:root {
+			--section-padding: var(--section-padding-mobile);
+		}
+		
+		.container {
+			width: min(calc(100% - 32px), var(--max-width));
+		}
+	}
+</style>
