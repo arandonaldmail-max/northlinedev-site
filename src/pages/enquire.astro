@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Project enquiry | NorthlineDev" description="Tell NorthlineDev about your website project by email.">
+  <main class="inquiry container">
+    <a class="back" href="/">← NorthlineDev home</a>
+    <p class="eyebrow mono">Start your project</p>
+    <h1>Tell us what you need.</h1>
+    <p class="intro">Share a few details about your business and website. We can discuss scope, timing and a written quote by email. No sales call required.</p>
+    <form id="project-inquiry" hidden>
+      <label for="business">Business name</label>
+      <input id="business" name="business" required maxlength="100" autocomplete="organization" />
+      <label for="email">Your reply email</label>
+      <input id="email" name="email" type="email" required maxlength="150" autocomplete="email" />
+      <label for="scope">Project type</label>
+      <select id="scope" name="scope" required><option value="">Select a project</option><option>New website</option><option>Website redesign</option><option>Website maintenance</option><option>Other</option></select>
+      <label for="timeline">Preferred timing</label>
+      <select id="timeline" name="timeline" required><option value="">Select timing</option><option>Flexible</option><option>Within one month</option><option>One to three months</option><option>Not sure</option></select>
+      <label for="details">What should the website do?</label>
+      <textarea id="details" name="details" required minlength="10" maxlength="600" rows="5" aria-describedby="hint"></textarea>
+      <p id="hint">10–600 characters. Do not include passwords, payment details or sensitive information.</p>
+      <button type="submit">Prepare enquiry email</button>
+      <p id="status" role="status" aria-live="polite"></p>
+      <section id="preview" hidden>
+        <h2>Your prepared email</h2>
+        <textarea id="brief" readonly rows="9" aria-label="Prepared enquiry text"></textarea>
+        <a id="open-mail" class="action" href="mailto:aran@northlinedev.net">Open email app</a>
+        <p>Review and send the message in your email app. Preparing this message does not send anything.</p>
+      </section>
+    </form>
+    <p class="fallback">Prefer to write directly? <a href="mailto:aran@northlinedev.net">aran@northlinedev.net</a></p>
+    <p class="privacy">The enquiry builder runs in your browser and does not submit or store form data on a NorthlineDev server. Your email provider handles any message you choose to send.</p>
+  </main>
+</Layout>
+<script is:inline>
+function buildInquiry(data) {
+  const clean=(v)=>String(v??"").trim().replace(/[\r\n]+/g," ");
+  const business=clean(data.business), email=clean(data.email), scope=clean(data.scope), details=String(data.details??"").trim(), timeline=clean(data.timeline);
+  const scopes=["New website","Website redesign","Website maintenance","Other"];
+  const timelines=["Flexible","Within one month","One to three months","Not sure"];
+  if(!business||business.length>100||email.length>150||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||!scopes.includes(scope)||!timelines.includes(timeline)||details.length<10||details.length>600) throw new Error("Please complete the required fields with valid information.");
+  const body=["Business: "+business,"Reply email: "+email,"Project: "+scope,"Timing: "+timeline,"","Project brief:",details].join("\r\n");
+  return {body,href:"mailto:aran@northlinedev.net?subject="+encodeURIComponent("Website project enquiry")+"&body="+encodeURIComponent(body)};
+}
+const form=document.getElementById("project-inquiry");
+const status=document.getElementById("status");
+const preview=document.getElementById("preview");
+const brief=document.getElementById("brief");
+const openMail=document.getElementById("open-mail");
+form.hidden=false;
+form.addEventListener("input",()=>{preview.hidden=true;brief.value="";openMail.removeAttribute("href");status.textContent="";});
+form.addEventListener("submit",(event)=>{
+  event.preventDefault();
+  try {
+    const result=buildInquiry(Object.fromEntries(new FormData(form)));
+    brief.value=result.body;
+    openMail.href=result.href;
+    preview.hidden=false;
+    status.textContent="Email prepared. Nothing has been sent.";
+  } catch(error) {
+    preview.hidden=true;
+    status.textContent=error.message;
+  }
+});
+</script>
+<style>
+  .inquiry { max-width: 760px; padding: 48px 0 80px; position: relative; }
+  .back { display: inline-block; margin-bottom: 36px; text-decoration: underline; }
+  .eyebrow { color: #90b4ff; margin-bottom: 16px; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; color: white; margin-bottom: 20px; }
+  .intro,.privacy,.fallback,#hint,#preview p { color: #cbd5e1; margin: 16px 0; }
+  form { background: #0c1424; border: 1px solid #334155; padding: clamp(16px,4vw,32px); margin: 28px 0; border-radius: 12px; }
+  label { display: block; font-weight: 650; margin: 18px 0 6px; }
+  input,select,textarea { width: 100%; font: inherit; color: #f8fafc; background: #020617; border: 1px solid #64748b; border-radius: 6px; padding: 12px; }
+  textarea { resize: vertical; }
+  button,.action { display: inline-block; background: #2455c9; color: #fff; padding: 14px 18px; border: 0; border-radius: 6px; font: inherit; font-weight: 700; cursor: pointer; margin-top: 12px; }
+  :focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+  .fallback a { text-decoration: underline; overflow-wrap: anywhere; }
+  #preview { margin-top: 20px; }
+  #preview h2 { font-size: 1.2rem; margin-bottom: 12px; }
+  [hidden] { display: none !important; }
+</style>
