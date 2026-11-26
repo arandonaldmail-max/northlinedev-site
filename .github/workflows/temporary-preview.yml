@@ -1,0 +1,73 @@
+name: NorthlineDev temporary preview
+on:
+  push:
+    branches: ['omega/preview-build-001']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/enquiry.test.mjs
+      - run: npm run build
+      - name: Make static preview portable and discourage indexing
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          function walk(dir) {
+            for (const e of fs.readdirSync(dir,{withFileTypes:true})) {
+              const f=path.join(dir,e.name);
+              if(e.isDirectory()) walk(f);
+              else if(e.name.endsWith('.html')) {
+                const relative=path.relative(path.dirname(f),'dist') || '.';
+                let html=fs.readFileSync(f,'utf8');
+                html=html.replace(/\b(href|src)="\/(?!\/)([^"]*)"/g,(_,attr,target)=>attr+'="'+relative+'/'+target+'"');
+                html=html.replace(/<\/head>/i,'<meta name="robots" content="noindex,nofollow"></head>');
+                fs.writeFileSync(f,html);
+              }
+            }
+          }
+          walk('dist');
+          fs.writeFileSync('dist/.nojekyll','');
+          fs.writeFileSync('dist/robots.txt','User-agent: *\nDisallow: /\n');
+          JS
+          test -s dist/index.html && test -s dist/enquire/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: northlinedev-static-preview
+          path: dist/
+          include-hidden-files: true
+          retention-days: 1
+  prepare-pages-branch:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: northlinedev-static-preview
+          path: ${{ runner.temp }}/northlinedev-preview
+      - name: Create isolated static branch without overwriting existing branches
+        run: |
+          set -eu
+          if git ls-remote --exit-code --heads origin refs/heads/omega-preview >/dev/null 2>&1; then
+            echo "Preview branch already exists; refusing to overwrite it."
+            exit 1
+          fi
+          git switch --orphan omega-preview
+          cp -a "${RUNNER_TEMP}/northlinedev-preview/." .
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Prepare tested NorthlineDev static preview"
+          git push origin HEAD:refs/heads/omega-preview
