@@ -3,12 +3,12 @@ import Button from './Button.astro';
 
 const navItems = [
 	{ label: 'Infrastructure', href: '#services' },
-	{ label: 'Blueprint', href: '#process' },
-	{ label: 'Ledger', href: '#demo' },
-	{ label: 'Terminal', href: '#faq' },
+	{ label: 'Pricing', href: '#pricing' },
+	{ label: 'Enquiry', href: '/enquire/' },
+	{ label: 'Contact', href: '#faq' },
 ];
 
-const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northlinedev.com/?ismsaljsauthenabled";
+const bookingLink = "/enquire/";
 ---
 
 <header class="tactical-header">
@@ -20,8 +20,8 @@ const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northli
 					<div class="m-glow"></div>
 				</div>
 				<div class="brand-text">
-					<span class="m-top">Northline</span>
-					<span class="m-bottom mono">Infrastructure</span>
+					<span class="m-top">NorthlineDev</span>
+					<span class="m-bottom mono">Website development</span>
 				</div>
 			</a>
 		</div>
@@ -42,9 +42,9 @@ const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northli
 		<div class="header-right">
 			<div class="status-box reveal">
 				<span class="status-dot"></span>
-				<span class="mono">Grid: Online</span>
+				<span class="mono">Email enquiries</span>
 			</div>
-			<Button href={bookingLink} variant="ghost" className="nav-btn reveal">Request Access</Button>
+			<Button href={bookingLink} variant="ghost" className="nav-btn reveal">Start a project</Button>
 		</div>
 	</div>
 </header>
@@ -173,6 +173,7 @@ const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northli
 
 	@media (max-width: 1100px) {
 		.header-center { display: none; }
-		.nav-btn { display: none; }
+		.status-box { display: none; }
 	}
+	@media (max-width: 480px) { .brand-tactical { gap: 8px; } .m-top { font-size: 0.95rem; } .m-bottom { font-size: 0.5rem; } .header-right { gap: 0; } .header-wrap { gap: 8px; } }
 </style>
