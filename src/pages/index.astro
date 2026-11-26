@@ -5,9 +5,9 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import Button from '../components/Button.astro';
-import PricingCard from '../components/PricingCard.astro';
 
-const bookingLink = "https://bookings.cloud.microsoft/book/NorthlineDev1@northlinedev.com/?ismsaljsauthenabled";
+
+const bookingLink = "/enquire/";
 
 const techIcons = {
 	terminal: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>`,
@@ -17,7 +17,7 @@ const techIcons = {
 };
 ---
 
-<Layout title="Northline Infrastructure | Industrial-Grade Roofing Growth">
+<Layout title="NorthlineDev | Professional websites for service businesses">
 	<Header />
 	
 	<main>
@@ -28,24 +28,24 @@ const techIcons = {
 			id="services"
 			eyebrow="The Infrastructure Thesis"
 			title="Fragmented Tech is <br/>Architectural Failure."
-			description="Most agencies build 'stacks.' We build Monoliths. We replace fragile integrations with a single, hardened digital asset."
+			description="Bring your services, project examples and customer enquiry routes together in one professional website."
 		>
 			<div class="thesis-visual">
 				<div class="visual-pane reveal">
-					<div class="pane-label mono">Fragmented Cloud // Competitors</div>
+					<div class="pane-label mono">Illustration // Fragmented customer journey</div>
 					<div class="pane-content cloud-chaos">
 						<!-- Chaos visual placeholder -->
 						<div class="chaos-line"></div>
 						<div class="chaos-line"></div>
 						<div class="chaos-line"></div>
-						<div class="chaos-text mono">Error_Rate: 14.2%</div>
+						<div class="chaos-text mono">Disconnected enquiry routes</div>
 					</div>
 				</div>
 				<div class="visual-pane highlight reveal" style="animation-delay: 0.2s;">
-					<div class="pane-label mono">Northline Grid // Proprietary</div>
+					<div class="pane-label mono">Illustration // Unified website</div>
 					<div class="pane-content grid-solid">
 						<div class="monolith-icon"></div>
-						<div class="grid-stats mono">Uptime: 99.99%</div>
+						<div class="grid-stats mono">Clear customer journey</div>
 					</div>
 				</div>
 			</div>
@@ -56,28 +56,28 @@ const techIcons = {
 					number="Mod_01"
 					icon={techIcons.terminal}
 					title="Frontline Terminal" 
-					description="A high-conviction, custom-engineered interface that converts cold market traffic into primary data points."
+					description="A responsive website that helps visitors understand your services and find an enquiry route."
 				/>
 				<FeatureCard 
 					variant="module"
 					number="Mod_02"
 					icon={techIcons.pulse}
 					title="Response Engine" 
-					description="Proprietary AI protocol that executes sub-5-minute lead triage and automated estimate scheduling."
+					description="A clear enquiry workflow designed around the information your business needs to respond."
 				/>
 				<FeatureCard 
 					variant="module"
 					number="Mod_03"
 					icon={techIcons.database}
 					title="Command Center" 
-					description="Unified CRM architecture that provides total visibility into pipeline velocity and customer LTV."
+					description="We can discuss enquiry tracking and other integrations as separately scoped requirements."
 				/>
 				<FeatureCard 
 					variant="module"
 					number="Mod_04"
 					icon={techIcons.shield}
 					title="Reputation Ledger" 
-					description="Automated social proof compounding system that secures market authority via high-fidelity feedback loops."
+					description="Showcase your real project photographs and approved customer feedback where available."
 				/>
 			</div>
 		</Section>
@@ -86,49 +86,18 @@ const techIcons = {
 		<Section 
 			id="pricing"
 			eyebrow="Infrastructure Deployment"
-			title="Fixed-Cost Assets. <br/>Perpetual Yield."
-			description="Northline components are engineered for long-term durability. We deploy infrastructure, not services."
+			title="Clear Scope. <br/>Written Quotes."
+			description="Tell us what you need. We will discuss project scope, pricing and any ongoing care in writing."
 			dark={true}
 		>
-			<div class="deployment-grid">
-				<PricingCard 
-					title="Terminal Deployment"
-					price="997"
-					description="One-time engineering fee for custom Frontline Terminal and Grid foundation."
-					features={[
-						"Custom Architectural Design",
-						"Hardened Mobile Interface",
-						"Proprietary Lead Protocols",
-						"Advanced Security Layer",
-						"Core SEO Infrastructure"
-					]}
-					ctaLabel="Request Deployment"
-					ctaLink={bookingLink}
-				/>
-				<PricingCard 
-					title="Grid Membership"
-					price="300"
-					period="mo"
-					highlight={true}
-					description="Continuous access to the Response Engine, Command Center, and Ledger."
-					features={[
-						"AI Response Protocol Active",
-						"Lead Command Center Core",
-						"Reputation Ledger System",
-						"Weekly Yield Reporting",
-						"Grid Latency Monitoring"
-					]}
-					ctaLabel="Plub Into Grid"
-					ctaLink={bookingLink}
-				/>
-			</div>
+			<div class="deployment-grid"><div><h3>New website or redesign</h3><p>Discuss pages, content and enquiry requirements.</p><Button href={bookingLink} variant="tactical">Request a written quote</Button></div><div><h3>Website care</h3><p>Discuss maintenance requirements separately.</p><Button href={bookingLink} variant="ghost">Discuss your project</Button></div></div>
 		</Section>
 
 		<!-- Final Access -->
 		<Section 
 			id="faq"
 			title="Initiate <br/>Deployment Protocol."
-			description="We are currently operating at 94% grid capacity. Deployment slots are allocated via selective structural audits."
+			description="Tell us about your business and the website you need. We will discuss the next steps by email."
 		>
 			<div class="access-terminal reveal">
 				<div class="terminal-head">
@@ -137,10 +106,10 @@ const techIcons = {
 				</div>
 				<div class="terminal-body">
 					<h3>Request Grid Access</h3>
-					<p>Our audit is a forensic deep-dive into your growth leakage. No marketing fluff. Only engineering facts.</p>
+					<p>Share your project goals and preferred timing. We can agree the scope and a written quote before work begins.</p>
 					<div class="terminal-actions">
-						<Button href={bookingLink} variant="tactical">Book Forensic Audit</Button>
-						<a href="mailto:aran@northlinedev.com" class="mono mail-link">Secure_Line: aran@northlinedev.com</a>
+						<Button href={bookingLink} variant="tactical">Prepare project enquiry</Button>
+						<a href="mailto:aran@northlinedev.net" class="mono mail-link">Email: aran@northlinedev.net</a>
 					</div>
 				</div>
 			</div>
@@ -150,11 +119,9 @@ const techIcons = {
 
 	<footer class="tactical-footer">
 		<div class="container footer-wrap">
-			<div class="mono text-muted">© 2026 Northline Infrastructure // All Rights Reserved</div>
+			<div class="mono text-muted">© 2026 NorthlineDev // All Rights Reserved</div>
 			<div class="footer-links">
-				<a href="#" class="mono">Protocol</a>
-				<a href="#" class="mono">Security</a>
-				<a href="#" class="mono">Privacy</a>
+				<a href="/enquire/" class="mono">Project enquiry</a>
 			</div>
 		</div>
 	</footer>
